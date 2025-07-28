@@ -28,3 +28,7 @@ git add FILE
 
 ## Restart/undo conflict resolution in a single file
 git checkout --merge FILE
+
+## Restore local changes
+git checkout .
+git clean # this will delete new files...
