@@ -32,3 +32,6 @@ git checkout --merge FILE
 ## Restore local changes
 git checkout .
 git clean # this will delete new files...
+
+## Rebase sub-branch
+git rebase --onto TARGET PARENT CHILD
