@@ -35,3 +35,14 @@ git clean # this will delete new files...
 
 ## Rebase sub-branch
 git rebase --onto TARGET PARENT CHILD
+
+## Cherry-pick
+log of commits to copy from:
+    333 <- last
+    222
+    111 <- first
+    bbb <- based from
+
+git switch TargetBranch
+git cherry-pick bbb..333
+git cherry-pick bbb..333 -n # to not commit the changes
