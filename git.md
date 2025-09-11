@@ -46,3 +46,11 @@ log of commits to copy from:
 git switch TargetBranch
 git cherry-pick bbb..333
 git cherry-pick bbb..333 -n # to not commit the changes
+
+## Bisect
+https://stackoverflow.com/questions/5638211/how-do-you-get-git-bisect-to-ignore-merged-branches
+git bisect start --first-parent  # to don't travel branch individual commits, but only the merge's parent
+git bisect bad                   # Current version is bad
+git bisect good v2.6.13-rc2      # v2.6.13-rc2 is known to be good
+... then it checkout automatically and you say good/bad
+git bisect reset                 # to end it
