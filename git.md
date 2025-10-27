@@ -54,3 +54,9 @@ git bisect bad                   # Current version is bad
 git bisect good v2.6.13-rc2      # v2.6.13-rc2 is known to be good
 ... then it checkout automatically and you say good/bad
 git bisect reset                 # to end it
+
+## To revert changes introduced by commit 
+https://git-scm.com/docs/git-revert
+git revert <commit-B-SHA>
+... to undo changes on a single file or directory from commit B, but retain them in the staged
+git checkout <commit-B-SHA> <file>
