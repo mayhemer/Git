@@ -5,6 +5,7 @@ git checkout stash@{2} -- Content/BuilderPawnSystem/Blueprints/BP_BuildGameMode.
 ## Need to be done after checkout of a repo with submodules
 git submodule init
 git submodule update --init
+git submodule update --init --force
 git submodule update --init -- Plugins/VVRCoreMechanics
 
 ## Add a submodule from VVR/Plugins
@@ -55,8 +56,12 @@ git bisect good v2.6.13-rc2      # v2.6.13-rc2 is known to be good
 ... then it checkout automatically and you say good/bad
 git bisect reset                 # to end it
 
-## To revert changes introduced by commit 
+## To revert changes introduced by commit
 https://git-scm.com/docs/git-revert
 git revert <commit-B-SHA>
 ... to undo changes on a single file or directory from commit B, but retain them in the staged
 git checkout <commit-B-SHA> <file>
+
+## change origin/remote
+git remote get-url "origin"   # to check
+git remote set-url "origin" git@github.com:User/UserRepo.git
