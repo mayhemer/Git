@@ -94,3 +94,12 @@ git checkout <commit-B-SHA> <file>
 git remote get-url "origin"   # to check
 git remote set-url "origin" git@github.com:User/UserRepo.git
 ```
+
+## rename case only on macOS
+```bash
+git config core.ignorecase false
+git rm -r --cached .
+git add .
+git commit -m "Fix case-only file renames"
+git config core.ignorecase true #revert to macOS default
+```
