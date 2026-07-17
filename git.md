@@ -11,6 +11,10 @@ git submodule update --init
 # or, to replace according cursors
 git submodule update --init --force
 git submodule update --init -- Path/To/Subrepo
+# first load speeded up, when you don't need to travel accross commits
+    # depth can be more, if the server doesn't allow the wanted commit to checkout from instead
+    # jobs parallelize the process
+git submodule update --init --force --recursive --depth 1 --jobs 8
 ```
 
 ## Add a submodule from Repo/Branch
@@ -28,7 +32,7 @@ git config --remove-section submodule.{path-to-submodule}.
 
 ## Rebase remote
 ```bash
-git switch MyBranchIWantToRebas
+git switch MyBranchIWantToRebase
 git rebase TargetBranchToRebaseOnto
 git push origin --force # pushes my changes, dangerous: overrides other's changes, not for coop
 ```
@@ -102,4 +106,9 @@ git rm -r --cached .
 git add .
 git commit -m "Fix case-only file renames"
 git config core.ignorecase true #revert to macOS default
+```
+
+## alias definition
+```bash
+git config --global alias.co checkout
 ```
