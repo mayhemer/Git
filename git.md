@@ -1,3 +1,11 @@
+## Config
+```bash
+git config --global alias.subinitfull 'submodule update --init --recursive --force --jobs 12'
+git config --global alias.subinitshallow 'submodule update --init --recursive --force --jobs 12 --depth 1'
+
+git config --global --unset alias.xyz
+```
+
 ## Stash magic
 ```bash
 git stash list
