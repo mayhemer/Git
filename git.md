@@ -120,3 +120,14 @@ git config core.ignorecase true #revert to macOS default
 ```bash
 git config --global alias.co checkout
 ```
+
+## squashed diff inside vscode
+```bash
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
+# just show files
+git diff --stat "$1" HEAD
+# open in vscode
+git difftool -M -C -y <base-commit> HEAD
+git difftool -M -C -y <base-commit> HEAD -- <file/path>
+```
