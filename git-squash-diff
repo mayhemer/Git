@@ -1,0 +1,51 @@
+#!/bin/bash
+
+COMMIT="$1"
+
+if [ -z $COMMIT ]; then
+    echo Usage:
+    echo git-squash-diff '<base-commit>'
+    echo git-squash-diff '<base-commit> --list'
+    echo git-squash-diff '<base-commit> [file/path] [--stdout]'
+    exit 1
+fi
+
+[[ "$2" == "--list" ]] && LISTONLY=true || FILE="$2"
+[[ "$2" == "--stdout" ]] && TOSTDOUT=true && unset FILE
+[[ "$3" == "--stdout" ]] && TOSTDOUT=true 
+
+# Open in vscode, if configured:
+# git config --global diff.tool vscode
+# git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
+
+# echo COMMIT=$COMMIT
+# echo LISTONLY=$LISTONLY
+# echo FILE=$FILE
+# echo TOSTDOUT=$TOSTDOUT
+
+if [ $LISTONLY ]; then
+    echo "git diff --stat"
+    git diff --stat "$COMMIT" HEAD
+    exit 0
+fi
+
+if [ $TOSTDOUT ]; then
+    echo "git diff --histogram $FILE"
+    if [ -z $FILE ]; then
+        git diff -M -C -w --histogram "$COMMIT" HEAD
+    else
+        git diff -M -C -w --histogram "$COMMIT" HEAD -- "$FILE"
+    fi
+    exit 0
+fi
+
+if [ -z $FILE ]; then
+    # view one by one in vscode
+    echo "git difftool *"
+    git difftool -M -C -y "$COMMIT" HEAD
+    exit 0
+fi
+
+# view the file in vscode
+echo "git difftool $FILE"
+git difftool -M -C -y "$COMMIT" HEAD -- "$FILE"
