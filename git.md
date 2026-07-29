@@ -97,17 +97,18 @@ git bisect reset                 # to end it
 https://git-scm.com/docs/git-revert
 ```bash
 git revert <commit-B-SHA>
+git revert -n <commit-B-SHA> # for no commit
 # ... to undo changes on a single file or directory from commit B, but retain them in the staged
 git checkout <commit-B-SHA> <file>
 ```
 
-## change origin/remote
+## Change origin/remote
 ```bash
 git remote get-url "origin"   # to check
 git remote set-url "origin" git@github.com:User/UserRepo.git
 ```
 
-## rename case only on macOS
+## Rename case only on macOS
 ```bash
 git config core.ignorecase false
 git rm -r --cached .
@@ -116,12 +117,12 @@ git commit -m "Fix case-only file renames"
 git config core.ignorecase true #revert to macOS default
 ```
 
-## alias definition
+## Alias definition
 ```bash
 git config --global alias.co checkout
 ```
 
-## squashed diff inside vscode
+## Squashed diff inside vscode
 ```bash
 git config --global diff.tool vscode
 git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'
