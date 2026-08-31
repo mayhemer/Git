@@ -43,6 +43,7 @@ git config --remove-section submodule.{path-to-submodule}.
 git switch MyBranchIWantToRebase
 git rebase TargetBranchToRebaseOnto
 git push origin --force # pushes my changes, dangerous: overrides other's changes, not for coop
+git push origin --force +MyBranchIWantToRebase # as above, with specifying which branch to push to
 ```
 
 ## select the my/theirs version for merge
@@ -81,6 +82,11 @@ log of commits to copy from:
 git switch TargetBranch
 git cherry-pick bbb..333
 git cherry-pick bbb..333 -n # to not commit the changes
+
+# To cherry-pick whole BRANCH:
+BRANCH=my/branch; git cherry-pick $(git merge-base master ${BRANCH})..${BRANCH}
+# When it was not ever checked out:
+BRANCH=origin/my/branch; git cherry-pick $(git merge-base master ${BRANCH})..${BRANCH}
 ```
 
 ## Bisect
