@@ -23,6 +23,12 @@ git submodule update --init -- Path/To/Subrepo
     # depth can be more, if the server doesn't allow the wanted commit to checkout from instead
     # jobs parallelize the process
 git submodule update --init --force --recursive --depth 1 --jobs 8
+
+# to unshallow for a specific branch switch/checkout:
+cd submodule/
+git remote set-branches --add origin {branch-name}
+git fetch --unshallow origin {branch-name}
+git switch {branch-name}
 ```
 
 ## Add a submodule from Repo/Branch
