@@ -31,6 +31,12 @@ git fetch --unshallow origin {branch-name}
 git switch {branch-name}
 ```
 
+## Resolving submodule cursor merge conflict
+```bash
+git reset HEAD path/to/submodule
+# this will NOT checkout HEAD, it will keep the subby where it is, just resolves the conflict
+```
+
 ## Add a submodule from Repo/Branch
 ```bash
 git submodule add -b Branch https://dev.azure.com/Org/Proj/_git/Repo 
