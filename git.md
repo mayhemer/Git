@@ -56,6 +56,9 @@ git switch MyBranchIWantToRebase
 git rebase TargetBranchToRebaseOnto
 git push origin --force # pushes my changes, dangerous: overrides other's changes, not for coop
 git push origin --force +MyBranchIWantToRebase # as above, with specifying which branch to push to
+
+# Or automated:
+git push origin --force +$(git branch --show-current) 
 ```
 
 ## select the my/theirs version for merge
@@ -149,4 +152,9 @@ git diff --stat "$1" HEAD
 # open in vscode
 git difftool -M -C -y <base-commit> HEAD
 git difftool -M -C -y <base-commit> HEAD -- <file/path>
+```
+
+## Single diff of the current branch to its base
+```bash
+git diff $(git merge-base master HEAD) HEAD
 ```
