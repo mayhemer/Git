@@ -61,6 +61,12 @@ git push origin --force +MyBranchIWantToRebase # as above, with specifying which
 git push origin --force +$(git branch --show-current) 
 ```
 
+## Rename pushed commit on master
+```bash
+git commit --amend -m "New message"
+git push origin master -f
+```
+
 ## select the my/theirs version for merge
 -- when rebasing my branch on `main`, local/remote are backwards!
 ```bash
